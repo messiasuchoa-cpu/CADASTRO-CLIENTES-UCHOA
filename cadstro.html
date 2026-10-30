@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Clientes</title>
+    <link rel="stylesheet" href="cadastro.css">
+</head>
+<body class="pagina-cadastro">
+    <header>
+        <h1>Bem-vindo ao Sistema de Cadastro de Clientes</h1>
+    </header>
+<nav class="menu-navegacao">
+            <a href="index.html">Home</a>
+            <a href="cadastro.html">Cadastro</a>
+            <a href="clientes.html">Clientes</a>
+    </nav>
+
+    <main class="conteudo-principal">
+        <img src="assets/logo.avif" alt="Logo do Sistema de Cadastro de Clientes" class="logo" srcseto">
+        <form id="formulario-cadastro">
+            <input type="text" id="nome" name="nome" placeholder="Maria Silva" required>
+            <input type="email" id="email" name="email" placeholder="maria.silva@example.com" required>
+            <input type="tel" id="telefone" name="telefone" placeholder="7199999999" required>
+            <button type="button" onclick="funcaoCadastrarCliente()">Cadastrar</button>
+        </form>
+            
+    </main>
+    <script src="cadastro.js"></script>
+</body>
+</html>
