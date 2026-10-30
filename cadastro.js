@@ -1,31 +1,59 @@
 function funcaoCadastrarCliente() {
-    // identifica os campos do no HTML e pega os valores.
-    const nome = document.getElementById("nome").value;
-    const email = document.getElementById("email").value;
-    const telefone = document.getElementById("telefone").value;
+    // Identifica os campos no HTML e pega os valores.
+    const nome = document.getElementById('nome').value.trim()
+    const email = document.getElementById('email').value.trim()
+    const telefone = document.getElementById('telefone').value.trim()
 
-    // verifica se os campos estão vazios.
-    //mostra mensagem de alerta no navegador.
+    // Verifica se os campos estão vazios.
+    // Mostra mensagem de alerta no navegador.
     if (!nome || !email || !telefone) {
-        alert("Por favor, preencha todos os campos.");
-        return;
+        alert('Por favor, preencha todos os campos.')
+        return
     }
 
-    // cria uma variável coms dados do novo cliente.
-    const novoCliente = {nome, email, telefone}
+    // Cria uma variável com os dados do cliente.
+    const novoCliente = { nome, email, telefone }
 
-    // pega a lista de clientes já existente ou cria uma nova lista vazia.
-    let clientes = JSON.parse(localStorage.getItem("clientes")) || []
-    
-    // adiciona o novo cliente à lista de clientes.
-    listaClientes.push(novoCliente);
+    // Pega a lista de clientes já existente ou cria uma vazia.
+    let listaClientes = []
 
-    //salva no localStorage (aramazenamento local do navegador) a lista de clientes atualizada.
-    localStorage.setItem("clientes", JSON.stringify(listaClientes));
+    try {
+        listaClientes = JSON.parse(localStorage.getItem('clientes') || '[]')
+    } catch (error) {
+        console.error('Erro ao ler clientes salvos:', error)
+    }
 
-    //mensagem do navegador informando que o cliente foi cadastrado com sucesso.
-    alert("Cliente cadastrado com sucesso!");
+    if (!Array.isArray(listaClientes)) {
+        listaClientes = []
+    }
 
-    //limpa o formulário de cadastro.
-    document.getElementById("formulario-cadastro").reset();
+    // Adiciona um novo cliente na lista.
+    listaClientes.push(novoCliente)
+
+    // Salva no localStorage (Armazenamento local no navegador)
+    localStorage.setItem('clientes', JSON.stringify(listaClientes))
+
+    // Mensagem do navegador confirmando salvamento.
+    alert('Cliente cadastrado com sucesso!')
+
+    const formularioCadastro = document.getElementById('formulario-cadastro')
+    if (formularioCadastro) {
+        formularioCadastro.classList.remove('sucesso')
+        void formularioCadastro.offsetWidth
+        formularioCadastro.classList.add('sucesso')
+        formularioCadastro.reset()
+    }
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+    const formularioCadastro = document.getElementById('formulario-cadastro')
+
+    if (!formularioCadastro) {
+        return
+    }
+
+    formularioCadastro.addEventListener('submit', (event) => {
+        event.preventDefault()
+        funcaoCadastrarCliente()
+    })
+})

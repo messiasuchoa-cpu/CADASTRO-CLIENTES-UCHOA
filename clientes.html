@@ -1,31 +1,47 @@
 <!DOCTYPE html>
 <html lang="pt">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro de Clientes</title>
+    <title>Cadastro de clientes</title>
     <link rel="stylesheet" href="clientes.css">
 </head>
+
 <body class="pagina-clientes">
-    <header>
-        <h1>Bem-vindo ao Sistema de Cadastro de Clientes</h1>
-    </header>
-   <nav class="menu-navegacao
-            <a href="index.html">Home</a></li>
-            <a href="cadastro.html">Cadastro</a></>
-            <a href="clientes.html">Clientes</a></li>
+    <nav class="menu-navegacao">
+        <a href="index.html">Home</a>
+        <a href="cadastro.html">Cadastro</a>
+        <a href="clientes.html">Clientes</a>
     </nav>
+
     <main class="conteudo-principal">
-        < class="secao-introducao">
-            <h1>Bem-vindo ao Sistema de Clientes</h1>
-            <p>Este É um sistema para cadastrar seus clientes</p>
-            <img src="assets/logo.avif" alt="Logo do Sistema de Cadastro de Clientes" class="logo" srcseto">
-            <h2>Lista de Clientes Cadastrados</h2>
-            <ul id="lista-clientes">
-                <!-- Os clientes cadastrados serão adicionados aqui dinamicamente -->
-            </ul>
+        <img src="assets/logo.avif" alt="Logo da empresa" class="logo">
+
+        <h2 class="titulo-animado">Lista de clientes</h2>
+        <ul id="lista-clientes" class="lista-clientes">
+            <!-- O conteúdo virá do clientes.js -->
+        </ul>
     </main>
     <script src="clientes.js"></script>
-        
-    </body>
-</html>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const titulo = document.querySelector('.titulo-animado')
+
+            if (!titulo) {
+                return
+            }
+
+            const texto = titulo.textContent
+            titulo.textContent = ''
+
+            [...texto].forEach((caractere, indice) => {
+                const span = document.createElement('span')
+                span.className = 'char'
+                span.style.setProperty('--i', indice)
+                span.textContent = caractere === ' ' ? '\u00A0' : caractere
+                titulo.appendChild(span)
+            })
+        })
+    </script>
+</body>

@@ -3,24 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro de Clientes</title>
+    <title>Cadastro de clientes</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="pagina-principal">
-    <header>
-        <h1>Bem-vindo ao Sistema de Cadastro de Clientes</h1>
-    </header>
-   <nav class="menu-navegacao
-            <a href="index.html">Home</a></li>
-            <a href="cadastro.html">Cadastro</a></>
-            <a href="clientes.html">Clientes</a></li>
+    <nav class="menu-navegacao">
+        <a href="index.html">Home</a>
+        <a href="cadastro.html">Cadastro</a>
+        <a href="clientes.html">Clientes</a>
     </nav>
+
     <main class="conteudo-principal">
-        < class="secao-introducao">
-            <h1>Bem-vindo ao Sistema de Clientes</h1>
-            <p>Este É um sistema para cadastrar seus clientes</p>
-            <img src="assets/logo.avif" alt="Logo do Sistema de Cadastro de Clientes" srcseto">
+        <img src="assets/logo.avif" alt="Logo da empresa" class="logo">
+
+        <h1 class="titulo-animado">Bem-vindo ao Sistema de Clientes</h1>
+        <p>
+            Este é um sistema para cadastrar seus clientes.
+        </p>
     </main>
-    <script src="script.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const titulo = document.querySelector('.titulo-animado')
+
+            if (!titulo) {
+                return
+            }
+
+            const texto = titulo.textContent
+            titulo.textContent = ''
+
+            [...texto].forEach((caractere, indice) => {
+                const span = document.createElement('span')
+                span.className = 'char'
+                span.style.setProperty('--i', indice)
+                span.textContent = caractere === ' ' ? '\u00A0' : caractere
+                titulo.appendChild(span)
+            })
+        })
+    </script>
 </body>
 </html>
